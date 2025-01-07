@@ -1,5 +1,5 @@
 ---
-GIP: "0082"
+GIP: "0083"
 Title: Integrate Substreams into The Graph Network
 Authors: Alexandre Bourget <alex@streamingfast.io>
 Created: 2024-10-27
