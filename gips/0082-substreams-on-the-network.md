@@ -6,7 +6,7 @@ Created: 2024-10-27
 Updated: 2024-10-27
 Stage: Draft
 Discussions-To: *To be added later*
-Category: Protocol Logic, Protocol Interfaces
+Category: "Protocol Logic", "Protocol Interfaces"
 Implementations: *To be added later*
 ---
 
