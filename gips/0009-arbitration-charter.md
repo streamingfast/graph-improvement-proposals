@@ -22,7 +22,7 @@ The Graph has a protocol role called an Arbitrator who is assigned through decen
 
 ## 1. Role of the Arbitrator.
 
-The role of the Arbitrator is to decide the outcome of indexing and query disputes. Their goal is to maximize the utility and reliability of The Graph Network.
+The role of the Arbitrator is to decide the outcome of indexing, data streaming, and query disputes. Their goal is to maximize the utility and reliability of The Graph Network.
 
 They fulfill this purpose by looking at the **Proofs of Indexing (PoIs)** or query **Attestations** associated with a dispute and checking if they correspond to the results that the Arbitrator produced when reproducing the work themselves. They decide the outcome of the dispute according to the norms laid out in this charter and based on whether the PoI or Attestation was produced correctly.
 
@@ -47,7 +47,7 @@ The two categories of work that can be disputed in the network are indexing and 
  - *Draw*. Neither the Indexer nor the Fisherman is penalized.
 
 ## 4. Indexing and query faults due to software malfunctions
-Incorrect Proofs of Indexing or query Attestations may be produced due to software malfunctions in the Graph Node software or the Indexer's blockchain client. We will refer to these malfunctions collectively as *determinism bugs*.
+Incorrect Proofs of Indexing or query Attestations may be produced due to software malfunctions in the Graph Node software, the Substreams software, or the Indexer's blockchain client. We will refer to these malfunctions collectively as *determinism bugs*.
 
 The Arbitrator is encouraged to resolve disputes as a *Draw* if they believe an incorrect PoI or Attestation to be the result of a determinism bug.
 
@@ -70,9 +70,10 @@ The Arbitrator must decide any such dispute that is outside this statute of limi
 ## 7. Data Availability
 In order for an Arbitrator to settle a dispute correctly, they must have access to the following data, which is not stored on-chain:
 - The subgraph manifest, schema and mappings.
+- Any relavent Substreams packages
 - The query body (for query disputes).
 
-If the Arbitrator cannot access any of this data via the IPFS network, then they must resolve the dispute as a *Draw*.
+If the Arbitrator cannot access any of this data via the IPFS network or [the Substreams registry](https://substreams.dev), then they must resolve the dispute as a *Draw*.
 
 ## 8. Maximum allowable slashing for query disputes
 Indexers should only be slashed for a maximum of once per epoch per allocation.
@@ -148,7 +149,7 @@ There are several reasons for placing a statute of limitations on the faults for
 An alternate design that addresses the above issues would be to enforce the statute of limitations in the protocol smart contracts. A drawback of this approach, as before, is that it requires software changes and so is a heavier change. This approach may be explored in a future GIP.
 
 ## Data Availability
-An Arbitrator can only perform their job if they are able to reproduce the work of an Indexer. This requires access to data such as subgraph manifests or the body of a query, both of which are too large to store on-chain. A Fisherman should have a built-in incentive to make sure this data is available so they can be awarded for a successful dispute.
+An Arbitrator can only perform their job if they are able to reproduce the work of an Indexer. This requires access to data such as subgraph manifests, Substreams packages, or the body of a query, both of which are too large to store on-chain. A Fisherman should have a built-in incentive to make sure this data is available so they can be awarded for a successful dispute.
 
 The proposed charter requires settling disputes where data is unavailable as a *Draw*. An alternative design would be to punish the Fisherman for submitting a dispute without making the data available. A drawback of this approach is that discovering files through the IPFS distributed hash table (DHT) is not 100% reliable and could introduce undue risk to the Fisherman. This might be mitigated by requiring the Fisherman to pin all necessary files to a specific IPFS node, but this feels overly centralized and brittle.
 
